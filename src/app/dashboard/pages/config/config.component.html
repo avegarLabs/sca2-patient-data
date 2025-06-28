@@ -1,0 +1,103 @@
+<div class="max-w-8xl mx-auto p-4">
+
+  <!-- Encabezado -->
+  <div class="bg-white rounded-xl shadow-md p-4 mb-4">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+      <div>
+        <div class="flex items-center">
+          <div class="bg-gray-200 border-2 border-dashed rounded-xl w-8 h-8 flex items-center justify-center">
+            <fa-icon [icon]="['fas', getIconName('faCogs')]" style="font-size: 15px;"></fa-icon>
+
+
+          </div>
+          <h1 class="text-2xl font-bold text-gray-800 ml-5 mt-2">Elementos de generales en la app</h1>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Sección superior: 2 columnas -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+    <!-- Columna 1: Empresas -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-gray-800">
+          Marcadores
+        </h2>
+        <button type="button" (click)="openModal()"
+          class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-1 mb-1 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Agregar</button>
+      </div>
+
+      <div class="space-y-4">
+        @for (sca of service.scas(); track sca.id) {
+        <div
+          class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-primary transition-colors">
+          <div class="flex items-start">
+            <div class="bg-gray-200 border-2 border-dashed rounded-xl w-5 h-5 flex items-center justify-center">
+              <fa-icon [icon]="['fas', getIconName('faCrosshairs')]" style="font-size: 12px;"></fa-icon>
+            </div>
+            <div class="ml-4 items-center justify-center">
+              <h3 class="font-semibold text-gray-800">{{sca.nombre}}</h3>
+            </div>
+          </div>
+
+          <button type="button" (click)="deleteMarkert(sca.id)"
+            class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-1 mb-1 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Eliminar</button>
+        </div>
+        }
+
+        <!-- Sin empresas -->
+        @if (service.scas().length === 0 ) {
+        <div class="text-center py-6 border-2 border-dashed rounded-lg">
+          <i class="fas fa-building text-3xl text-gray-400 mb-3"></i>
+          <p class="text-gray-500">No hay marcadores declarados</p>
+          <button class="mt-3 text-primary hover:underline">Agregar primer marcador</button>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Columna 2: Objetos -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-gray-800">
+          <i class="fas fa-cubes mr-2 text-accent"></i>Síntomas y Signos
+        </h2>
+        <button type="button"
+        (click)="openModalSymtom()"
+          class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-1 mb-1 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Agregar</button>
+      </div>
+
+      <div class="space-y-4">
+        @for (syn of sinService.simtoms(); track syn.id) {
+        <div
+          class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-primary transition-colors">
+          <div class="flex items-start">
+            <div class="bg-gray-200 border-2 border-dashed rounded-xl w-5 h-5 flex items-center justify-center">
+              <fa-icon [icon]="['fas', getIconName('faVirus')]" style="font-size: 12px;"></fa-icon>
+            </div>
+            <div class="ml-4 items-center justify-center">
+              <h3 class="font-semibold text-gray-800">{{syn.nombre}}</h3>
+            </div>
+          </div>
+
+          <button type="button" (click)="deleteSyntom(syn.id)"
+            class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-1 mb-1 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Eliminar</button>
+        </div>
+        }
+
+          @if (sinService.simtoms().length === 0 ) {
+        <!-- Sin objetos -->
+        <div class="text-center py-6 border-2 border-dashed rounded-lg">
+          <i class="fas fa-cubes text-3xl text-gray-400 mb-3"></i>
+          <p class="text-gray-500">No hay síntomas o signos declarados</p>
+          <button class="mt-3 text-primary hover:underline">Crear primer síntoma/signo</button>
+        </div>
+      }
+      </div>
+    </div>
+  </div>
+  <!-- Sección inferior: Recursos -->
+
+</div>
