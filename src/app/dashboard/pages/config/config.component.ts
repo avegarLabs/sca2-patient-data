@@ -13,16 +13,29 @@ import { ScaMarketsService } from '../../../core/services/sca-markets.service';
 import { AddMarkerModalComponent } from '../../components/add-marker-modal/add-marker-modal.component';
 import { SintomsService } from '../../../core/services/sintoms.service';
 import { AddSyntomModalComponent } from '../../components/add-syntom-modal/add-syntom-modal.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-config',
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, MatPaginatorModule],
   templateUrl: './config.component.html',
 })
 export default class ConfigComponent {
   service = inject(ScaMarketsService);
   sinService = inject(SintomsService);
   private dialog = inject(MatDialog);
+
+  pageSize = 5;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+
+  pageSize1 = 5;
+  pageIndex1 = 0;
+  
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator1!: MatPaginator;
 
   private iconLibrary = inject(FaIconLibrary);
   constructor() {
@@ -68,5 +81,27 @@ export default class ConfigComponent {
 
   deleteSyntom(id: number) {
     this.sinService.deleteSintom(id);
+  }
+
+  get paginatedScas() {
+    const start = this.pageIndex * this.pageSize;
+    return this.service.scas().slice(start, start + this.pageSize);
+  }
+
+  // Maneja eventos de paginación
+  handlePageEvent(event: any) {
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+  }
+
+  get paginatedSintoms() {
+    const start = this.pageIndex1 * this.pageSize1;
+    return this.sinService.simtoms().slice(start, start + this.pageSize1);
+  }
+
+  // Maneja eventos de paginación
+  handlePageEvent1(event: any) {
+    this.pageSize1 = event.pageSize;
+    this.pageIndex1 = event.pageIndex;
   }
 }

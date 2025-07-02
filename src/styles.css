@@ -6,3 +6,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .tailwind-modal-panel {
  @apply p-5 bg-white rounded-xl shadow-xl w-full max-w-2xl;
 }
+
+/* En tu archivo de estilos global */
+.mat-paginator {
+  background: transparent;
+  border-radius: 8px;
+  padding: 16px 0;
+}
+
+.mat-select-panel {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+}

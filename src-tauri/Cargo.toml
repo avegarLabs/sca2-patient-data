@@ -24,7 +24,7 @@ log = "0.4"
 tauri = { version = "2.6.1", features = [] }
 tauri-plugin-log = "2"
 
-diesel = { version = "2.2.0", features = ["sqlite"] }
+diesel = { version = "2.2.0", features = ["sqlite", "64-column-tables"] }
 libsqlite3-sys = { version = "0.28.0", features = ["bundled"] }
 dotenv = "0.15.0"
 

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faPerson, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faCogs } from '@fortawesome/free-solid-svg-icons';
 //import { AuthService } from '../../auth/services/auth.service';
 
 interface MenuOptions {
@@ -22,14 +22,14 @@ export class SideMenuOptionsComponent {
   //auth = inject(AuthService);
   router = inject(Router);
   constructor() {
-    this.iconLibrary.addIcons(faPerson, faCogs);
+    this.iconLibrary.addIcons(faBook, faCogs);
   }
 
   menuOptions: MenuOptions[] = [
     {
-      icon: 'faPerson',
+      icon: 'faBook',
       label: 'Pacientes',
-      subLabel: 'Datos de Pacientes',
+      subLabel: 'Datos de Generales',
       route: '/dashboard/persons',
     },
      {

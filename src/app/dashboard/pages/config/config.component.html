@@ -30,7 +30,7 @@
       </div>
 
       <div class="space-y-4">
-        @for (sca of service.scas(); track sca.id) {
+        @for (sca of paginatedScas; track sca.id) {
         <div
           class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-primary transition-colors">
           <div class="flex items-start">
@@ -56,6 +56,11 @@
         </div>
         }
       </div>
+      @if (service.scas().length > 0) {
+      <mat-paginator [length]="service.scas().length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex" (page)="handlePageEvent($event)" class="mt-4" aria-label="Seleccione página">
+      </mat-paginator>
+      }
     </div>
 
     <!-- Columna 2: Objetos -->
@@ -64,13 +69,12 @@
         <h2 class="text-xl font-bold text-gray-800">
           <i class="fas fa-cubes mr-2 text-accent"></i>Síntomas y Signos
         </h2>
-        <button type="button"
-        (click)="openModalSymtom()"
+        <button type="button" (click)="openModalSymtom()"
           class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-1 mb-1 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">Agregar</button>
       </div>
 
       <div class="space-y-4">
-        @for (syn of sinService.simtoms(); track syn.id) {
+        @for (syn of paginatedSintoms; track syn.id) {
         <div
           class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-primary transition-colors">
           <div class="flex items-start">
@@ -87,15 +91,20 @@
         </div>
         }
 
-          @if (sinService.simtoms().length === 0 ) {
+        @if (sinService.simtoms().length === 0 ) {
         <!-- Sin objetos -->
         <div class="text-center py-6 border-2 border-dashed rounded-lg">
           <i class="fas fa-cubes text-3xl text-gray-400 mb-3"></i>
           <p class="text-gray-500">No hay síntomas o signos declarados</p>
           <button class="mt-3 text-primary hover:underline">Crear primer síntoma/signo</button>
         </div>
-      }
+        }
       </div>
+      @if (sinService.simtoms().length > 0) {
+      <mat-paginator [length]="sinService.simtoms().length" [pageSize]="pageSize1" [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex1" (page)="handlePageEvent1($event)" class="mt-4" aria-label="Seleccione página">
+      </mat-paginator>
+      }
     </div>
   </div>
   <!-- Sección inferior: Recursos -->
